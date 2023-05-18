@@ -1,0 +1,18 @@
+%{
+#include <stdio.h>
+int keywords=0,identifier=0;
+%}
+%%
+if|else|while|int|switch|for|char    {printf("keyword");}
+[a-z]([a-z]|[0-9])*    {printf("identifier");}
+.*    {printf("invalid");}
+%%
+int yywrap(){}
+int main()											
+{
+yylex();
+printf ("keywords are = %d,"
+		"identifier are = %d\n",
+				keywords, identifier);
+return 0;
+}
